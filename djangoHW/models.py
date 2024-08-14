@@ -9,9 +9,10 @@ from django.db import models
 
 
 class Djangohw(models.Model):
-    todolist = models.AutoField(primary_key=True)
-    checkbox = models.IntegerField()
-    learnsome = models.CharField(max_length=20)
+    todo_id = models.AutoField(primary_key=True)
+    completed = models.IntegerField(blank=True, null=True)
+    todo = models.CharField(max_length=20)
+    last_update = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

@@ -2,16 +2,17 @@
 create database django_hw;
 use django_hw;
 
--- drop table djangohw
+-- drop table djangohw;
+-- drop database django_hw;
 
 create table djangohw(
-todolist int not null primary key auto_increment,
-checkbox boolean not null,
-learnsome varchar(20) not null);
+todo_id int not null primary key auto_increment,
+completed boolean default 0,
+todo varchar(20) not null,
+last_update timestamp default current_timestamp on update current_timestamp
+);
 
-select * from djangohw;
-
-insert into djangohw(checkbox, learnsome)
+insert into djangohw(completed, todo)
 values
 ('1', '學習 Python'),
 ('0', '學習 Django'),
@@ -19,4 +20,4 @@ values
 
 select * from djangohw;
 
-show warnings;
+-- show warnings;

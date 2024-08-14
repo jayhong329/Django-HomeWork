@@ -20,8 +20,8 @@ from djangoHW import views
 
 app_name = "djangoHW"
 urlpatterns = [
-    path ('', views.index, name = 'index'), # http://127.0.0.1:8000/
-    # path('delete/<int:id>', views.delete, name="delete" ),   # http://127.0.0.1:8000/delete/
+    path ('', views.index, name ='index'), # http://127.0.0.1:8000/
+    path('delete/<int:id>', views.delete, name="delete" ),   # http://127.0.0.1:8000/delete/
 ]
 
 
