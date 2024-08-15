@@ -30,18 +30,23 @@
     <tbody>
         {% for list in alltodo %}
         <tr>
-            <!-- <td id="todoCheck">
-                <input type="checkbox" name="check_it" class="form-check-input">
-                <label class="form-check-label" for="check_it">未完成</label>
-            </td> -->
-            <td id="todoCheck"><input class="form-check-input" type="checkbox" value="" unchecked> 未完成</td>
+            <td>
+                <form method="POST" action="{% url 'djangoHW:edit' list.todo_id %}">
+                    {% csrf_token %}    
+                    <input type="hidden" name="todo_id" value="{{ list.todo_id }}">
+                    <input type="checkbox" name="completed" {% if list.completed %}checked{% endif %} onclick="this.form.submit()"> 
+                    {% if list.completed %}
+                        已完成
+                    {% else %}
+                        未完成
+                    {% endif %}
+                    <!-- <input type="checkbox" name="completed" unchecked>未完成 -->
+                </form>
+            </td>
             <td>{{ list.todo }}</td>
             <td><a href="{% url 'djangoHW:delete' list.todo_id %}" class="btn btn-danger" onclick="return confirm('確定要刪除嗎~')">刪除</a>
-            </td>
         </tr>
         {% endfor %}
-    </tbody>
-
     </tbody>
 </table>
 {% endblock %}
@@ -49,19 +54,7 @@
 
 {% block scripts %}
 <script>
-    const eleTables  = document.querySelectorAll("#todoCheck");
-    eleTables .forEach(theTd => {
-        var clickbtn = false;
-        theTd.addEventListener("click", () => {
-            clickbtn = !clickbtn;
-
-            if (clickbtn){
-                theTd.innerHTML = '<input class="form-check-input" type="checkbox" value="" checked> 已完成';
-            }else{
-                theTd.innerHTML = '<input class="form-check-input" type="checkbox" value="" unchecked> 未完成';
-            }
-    });
-});
+  
 </script>
 {% endblock %}
 
