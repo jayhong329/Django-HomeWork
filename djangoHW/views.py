@@ -26,8 +26,8 @@ def edit(request, id):
     djangohw = Djangohw.objects.get(todo_id=id)
     # 2.進行修改
     if request.method == "POST":
-        completed_status = request.POST.get("completed")
-        djangohw.completed = 1 if completed_status else 0
+        completed_status = request.POST.get("completed") == "on"
+        djangohw.completed = completed_status
         djangohw.save()
     return redirect('djangoHW:index')
 
